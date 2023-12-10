@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  server:
+    build: ./server
+    container_name: server
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    environment:
+      - PG_DB=ecopark
+      - PG_USER=postgres
+      - PG_PASSWORD=qwerty12345
+      - PG_HOST=db
+    depends_on:
+      db:
+        condition: service_healthy
+
+  client:
+    build: ./client
+    container_name: client
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server
+
+  db:
+    container_name: db
+    image: postgres:12
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=ecopark
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty12345
+    volumes:
+      - ecopark_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  ecopark_db_data: {}
