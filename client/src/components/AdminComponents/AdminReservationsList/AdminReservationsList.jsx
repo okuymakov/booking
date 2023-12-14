@@ -11,6 +11,10 @@ function AdminReservationsList({ reserve }) {
     dispatch({ type: 'FETCH_DELETE_RESERVATION', payload: `${id}` });
   }
 
+  function cancelReservation(id) {
+    dispatch({ type: 'FETCH_CANCEL_RESERVATION', payload: `${id}` });
+  }
+
   return (
     <>
       {
@@ -49,7 +53,7 @@ function AdminReservationsList({ reserve }) {
           </p>
           <div className="adminreslist-btn-all">
             <Link className="adminreslist-update" to={reactRouter.admin.editReservationForParamas + reserve.id} key={reserve?.id}>Изменить</Link>
-            <button  className="adminreslist-btn" onClick={() => deleteReservation(reserve?.id)}>Отменить</button>
+            <button  className="adminreslist-btn" onClick={() => cancelReservation(reserve?.id)}>Отменить</button>
           </div>
         </div>
         )

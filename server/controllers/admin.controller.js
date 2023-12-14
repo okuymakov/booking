@@ -93,6 +93,29 @@ async function deleteReservationController(req, res) {
   }
 }
 
+async function cancelReservationController(req, res) {
+  try {
+    let orderCanceled = await Order.findOne({
+      where: { id: req.params.id, },
+    }).isCanceled;
+
+    let newOrder = await Order.update({
+      isCanceled: !orderCanceled,
+    }, {
+      where: {
+        id: req.params.id,
+      },
+    });
+    if (newOrder) {
+      return res.json(newOrder);
+    }
+  } catch (error) {
+    return ({
+      message: error.message,
+    });
+  }
+}
+
 async function updateReservationController(req, res) {
   const {
     dataIn, dataOut, summa, comment,
@@ -126,5 +149,6 @@ module.exports = {
   editHouseController,
   getAllReservations,
   deleteReservationController,
+  cancelReservationController,
   updateReservationController,
 };

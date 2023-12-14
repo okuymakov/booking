@@ -1,10 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import {
-  initHomesAC, deleteHomeAC, addHouseAdminAC, editHouseAdminAC, initOneHouseAC,
+  initHomesAC, deleteHomeAC, addHouseAdminAC, editHouseAdminAC, initOneHouseAC, 
 } from '../actionCreators/homesAC';
 import { loginAdminAC, logoutAdminAC, errorLoginAdminAC } from '../actionCreators/adminAC';
 import { getFreeHouseAC, initUnavalibleDate } from '../actionCreators/orderAC';
-import { deleteReservationsAC, initReservationsAC, updateReservationsAC } from '../actionCreators/reservationsAC';
+import { deleteReservationsAC, initReservationsAC, updateReservationsAC, cancelReservationsAC } from '../actionCreators/reservationsAC';
 import { initReviews, confirmReviewsAC, addReviews } from '../actionCreators/reviewsAC';
 import { FIND_RESERVATIONS_FETCH } from '../actionType/reservationAT';
 import { ADD_HOUSE_FETCH } from '../actionCreatorsAsync/actionCreatorsAsync';
@@ -185,6 +185,19 @@ function* deleteReservations(action) {
   yield put(deleteReservationsAC(reservation));
 }
 
+// Отмена бронирования
+function* cancelReservations(action) {
+  const reservation = yield call(fetchData, {
+    url: `${process.env.REACT_APP_URL}${router.admin.cancelReservations}/${action.payload}`,
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'Application/json',
+      Authorization: `${localStorage.getItem('token')}`,
+    },
+  });
+  yield put(cancelReservationsAC(reservation));
+}
+
 //Недоступность даты
 function* postUnavalibleDate(action) {
   try {
@@ -244,5 +257,6 @@ export function* globalWatcher() {
   yield takeEvery('FETCH_DELETE_RESERVATION', deleteReservations);
   yield takeEvery('FETCH_UNAVALIBLE_DATE', postUnavalibleDate);
   yield takeEvery('FETCH_UPDATE_RESERVATIONS', updateReservations);
+  yield takeEvery('FETCH_CANCEL_RESERVATION', cancelReservations);
   yield takeEvery('FETCH_GET_ONE_HOUSE', getOneHouse);
 }

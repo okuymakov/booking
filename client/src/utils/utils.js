@@ -14,6 +14,7 @@ export const router = {
     editHouse: '/api/admin/editHouse',
     allReservations: '/api/admin/reservations/all',
     updateReservations: '/api/admin/reservations/all/edit',
+    cancelReservations: '/api/admin/reservations/all/cancel',
   },
 };
 

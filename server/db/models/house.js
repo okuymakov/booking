@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0,
       type: DataTypes.INTEGER,
     },
+    bedsCount: {
+      defaultValue: 1,
+      type: DataTypes.INTEGER,
+    },
   }, {
     sequelize,
     modelName: 'House',

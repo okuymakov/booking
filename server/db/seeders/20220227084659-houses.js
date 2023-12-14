@@ -8,6 +8,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         rating: 0,
+        bedsCount: 4,
       },
       {
         name: 'ТАЙНИ ХАУС',
@@ -16,6 +17,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         rating: 0,
+        bedsCount: 1,
       },
       {
         name: 'Сканди хаус',
@@ -24,6 +26,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         rating: 0,
+        bedsCount: 5,
       },
       {
         name: 'РИВЕР ХАУС',
@@ -32,6 +35,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         rating: 0,
+        bedsCount: 2,
       },
 
     ], {});

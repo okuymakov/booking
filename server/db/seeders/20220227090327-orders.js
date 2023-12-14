@@ -11,6 +11,7 @@ module.exports = {
         house_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
+        isCanceled: false,
       },
 
       {
@@ -23,6 +24,7 @@ module.exports = {
         house_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
+        isCanceled: false,
       },
 
     ], {});

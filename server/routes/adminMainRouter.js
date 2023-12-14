@@ -15,6 +15,7 @@ router.put('/editHouse/:id', isAdmin, adminController.editHouseController);
 
 router.get('/reservations/all', isAdmin, adminController.getAllReservations);
 router.delete('/reservations/all/:id', isAdmin, adminController.deleteReservationController);
+router.put('/reservations/all/cancel/:id', isAdmin, adminController.cancelReservationController);
 router.put('/reservations/all/edit/:id', isAdmin, adminController.updateReservationController);
 
 module.exports = router;

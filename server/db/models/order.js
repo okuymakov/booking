@@ -51,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
       },
       type: DataTypes.INTEGER,
     },
+    isCanceled: {
+      defaultValue: false,
+      type: DataTypes.BOOLEAN,
+    },
   }, {
     sequelize,
     modelName: 'Order',

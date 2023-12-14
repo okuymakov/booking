@@ -23,6 +23,10 @@ module.exports = {
         defaultValue: 0,
         type: Sequelize.INTEGER,
       },
+      bedsCount: {
+        defaultValue: 1,
+        type: Sequelize.INTEGER,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

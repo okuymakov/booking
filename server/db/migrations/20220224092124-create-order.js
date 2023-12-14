@@ -43,6 +43,10 @@ module.exports = {
         },
         type: Sequelize.INTEGER,
       },
+      isCanceled: {
+        defaultValue: false,
+        type: Sequelize.BOOLEAN,
+      },
       // service_id: {
       //   type: Sequelize.ARRAY(Sequelize.INTEGER),
       // },
